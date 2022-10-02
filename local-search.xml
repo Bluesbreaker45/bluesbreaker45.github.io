@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>hexo博客设置注意事项</title>
+    <link href="/2022/10/02/tips-in-hexo-blog-setup/"/>
+    <url>/2022/10/02/tips-in-hexo-blog-setup/</url>
+    
+    <content type="html"><![CDATA[<p>注意，如果已经本地设置了git config name和email而又不想设置–global的name和email，去blog&#x2F;.deploy_git&#x2F;.git&#x2F;config加上</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[user]</span><br><span class="hljs-attr">name</span> = yourName<br><span class="hljs-attr">email</span> = yourEmail@yourEmail.com<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>一个比较妥当的文本增量更新的按时间组织方式</title>
     <link href="/2022/10/02/Content-timeline/"/>
     <url>/2022/10/02/Content-timeline/</url>
