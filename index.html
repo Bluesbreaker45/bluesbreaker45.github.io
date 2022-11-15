@@ -225,6 +225,39 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/11/15/Iterative-Solver-proof/" target="_self">
+          关于不同节点遍历顺序的Iterative Solver结果相等的证明
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/15/Iterative-Solver-proof/" target="_self">
+        <div>
+          以下以may analysis为例，must analysis基本同理，区别主要在于是$\sqsupseteq$还是$\sqsubseteq$。 注意以下谈到的所有$F$，首先要满足是safe的，包括transfer function设计合理并且每一轮中每个node都需要（至少）被visit过一次。注意这一点的意义在于你可以说我有一个$F$，transfer function或者每轮遍历内容为空，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-11-15 14:29" pubdate>
+              2022-11-15
+            </time>
+          </div>
+        
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/10/15/VM-setup/" target="_self">
           Notes on setting up a VM using VirtualBox
         </a>
@@ -233,7 +266,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2022/10/15/VM-setup/" target="_self">
         <div>
-          Enable I&#x2F;O APIC if you stock before seeing the OS installing interface. Virtual box shared folder Set magic. Note that you can apply magic just on firefox rather than system-wide. Symbolic link v
+          Enable I&#x2F;O APIC if you stock at the scene of the OS installing interface. Below are some solutions I found to deal with a VirtualBox error.Sadly, none of them works for me. But I just want to rec
         </div>
       </a>
 
@@ -291,15 +324,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/02/Interface-and-signature/" target="_self">
-          接口类型与签名，谁更本质？
+        <a href="/2022/10/02/Content-timeline/" target="_self">
+          一个比较妥当的文本增量更新的按时间组织方式
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/02/Interface-and-signature/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/02/Content-timeline/" target="_self">
         <div>
-          此处并没有考虑继承，因为继承还包含属性字段是否兼容的问题，不过如果把属性字段看成一个只有getter和setter的方法似乎也没有什么问题 疑问源于下面两个问题：     Implementing two interfaces in a class with same method.    Which interface method is overridden?  Implementing tw
+          当一个文本（特别是技术类文本）发布后可能因有了更多的体会而面临增量式更新。传统的更新内容位置设置有两种方式：  新内容在文本顶部，对已经读过一次的读者友好，优势是最新的内容替代已过时的内容，且更新更容易被已经读过之前版本的老读者注意到； 新内容在文本底部，对新读者更友好，优势是顺序暗含时间线，读者能跟随作者的思考过程与脉络。  我网上冲浪时观察到的普遍情况支持我以上对于优势的理解：情感类文章通常把
         </div>
       </a>
 
@@ -324,15 +357,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/10/02/Content-timeline/" target="_self">
-          一个比较妥当的文本增量更新的按时间组织方式
+        <a href="/2022/10/02/Interface-and-signature/" target="_self">
+          接口类型与签名，谁更本质？
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/02/Content-timeline/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/10/02/Interface-and-signature/" target="_self">
         <div>
-          当一个文本（特别是技术类文本）发布后可能因有了更多的体会而面临增量式更新。传统的更新内容位置设置有两种方式：  新内容在文本顶部，对已经读过一次的读者友好，优势是最新的内容替代已过时的内容，且更新更容易被已经读过之前版本的老读者注意到； 新内容在文本底部，对新读者更友好，优势是顺序暗含时间线，读者能跟随作者的思考过程与脉络。  我网上冲浪时观察到的普遍情况支持我以上对于优势的理解：情感类文章通常把
+          此处并没有考虑继承，因为继承还包含属性字段是否兼容的问题，不过如果把属性字段看成一个只有getter和setter的方法似乎也没有什么问题 疑问源于下面两个问题：     Implementing two interfaces in a class with same method.    Which interface method is overridden?  Implementing tw
         </div>
       </a>
 
