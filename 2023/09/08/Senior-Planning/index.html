@@ -16,23 +16,24 @@
   <meta name="author" content="Bluesbreaker45">
   <meta name="keywords" content="">
   
-    <meta name="description" content="此处并没有考虑继承，因为继承还包含属性字段是否兼容的问题， 不过如果把属性字段看成一个只有getter和setter的方法似乎也没有什么问题 疑问源于下面两个问题：      Implementing two interfaces in a class with same method.      Which interface method is overridden?  Implementin">
+    <meta name="description" content="入学仿佛就在昨天，没想到这么快就成为大四老狗了。许多想在大学里完成的事情有不少都没有完成。那就做一个TODO List督促自己吧！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="接口类型与签名，谁更本质？">
-<meta property="og:url" content="http://example.com/2022/10/02/Interface-and-signature/index.html">
+<meta property="og:title" content="Mission Impossible">
+<meta property="og:url" content="http://example.com/2023/09/08/Senior-Planning/index.html">
 <meta property="og:site_name" content="Bluesbreaker45&#39;s LiveHouse">
-<meta property="og:description" content="此处并没有考虑继承，因为继承还包含属性字段是否兼容的问题， 不过如果把属性字段看成一个只有getter和setter的方法似乎也没有什么问题 疑问源于下面两个问题：      Implementing two interfaces in a class with same method.      Which interface method is overridden?  Implementin">
+<meta property="og:description" content="入学仿佛就在昨天，没想到这么快就成为大四老狗了。许多想在大学里完成的事情有不少都没有完成。那就做一个TODO List督促自己吧！">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-22T09:34:44.911Z">
+<meta property="article:published_time" content="2023-09-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-09-07T16:00:00.000Z">
 <meta property="article:author" content="Bluesbreaker45">
+<meta property="article:tag" content="Daily">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>接口类型与签名，谁更本质？ - Bluesbreaker45&#39;s LiveHouse</title>
+  <title>Mission Impossible - Bluesbreaker45&#39;s LiveHouse</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="接口类型与签名，谁更本质？"></span>
+            <span id="subtitle" data-typed-text="Mission Impossible"></span>
           
         </div>
 
@@ -212,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-02 00:00" pubdate>
-          2022年10月2日 凌晨
+        <time datetime="2023-09-08 00:00" pubdate>
+          2023年9月8日 凌晨
         </time>
       </span>
     
@@ -224,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          64 字
         
       </span>
     
@@ -235,7 +236,7 @@
         
         
         
-          14 分钟
+          1 分钟
         
       </span>
     
@@ -273,58 +274,14 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">接口类型与签名，谁更本质？</h1>
+            <h1 style="display: none">Mission Impossible</h1>
             
             
               <div class="markdown-body">
                 
-                <p><em>此处并没有考虑继承，因为继承还包含属性字段是否兼容的问题，
-不过如果把属性字段看成一个只有getter和setter的方法似乎也没有什么问题</em></p>
-<p>疑问源于下面两个问题：</p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/2801878/implementing-two-interfaces-in-a-class-with-same-method-which-interface-method">
-    Implementing two interfaces in a class with same method. 
-    Which interface method is overridden?
-</a></p>
-<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/22685930/implementing-two-interfaces-with-two-default-methods-of-the-same-signature-in-ja">Implementing two interfaces with two default methods of the same signature in Java 8</a></p>
-<p>也就是说，实际上，方法可以被看做是一个个元素，等价判断的依据是方法签名是否相等。
-方法在实现关系中被传递赐予，同一类型内不能出现两个方法签名等价的方法。</p>
-<p>实现多个接口是否合法看的是方法，这不禁让我觉得貌似方法是一个更加本质的东西。
-接口不过是一个类具有某个方法的凭证，
-但是没有接口这个凭证并不代表这个类不具有方法签名等价意义下的该方法。</p>
-<p>首先回到java的多接口实现规则。这种做法可能会导致可拓展性上的阻碍：</p>
-<ol>
-<li>可能一个类实现了一个接口，而想实现另一个接口而拥有多种能力（即方法）时因为另外有某个方法冲突导致无法实现，即使事实上可能这个方法在整个程序中并不会被用到；</li>
-<li>另外，也有可能某个类只想拥有某个接口的部分方法，以在一些也不过是使用了该接口部分方法的程序中被使用。</li>
-</ol>
-<p>当然，理论上接口最小化原则可以有所缓解，但实际设计的时候可能很难在初期就考虑得十分周全（至少对于我这个智力低下的人是这样的）。</p>
-<p>但如果我们定义这样的关系：一个类型是否可以被看作另一个类型，只需要看他的方法的签名是否涵盖了另一个类型的所有方法（方法包含关系可看作格，在类型转换时单调递减，所以可停机。不过为什么要在这里提可停机？(・∀・(・∀・(・∀・*)），貌似这样的问题就得到了解决。
-（甚至激进点，只要包含了在整个程序中所有被用到的方法就行。不过由于作为参数传递的关系，
-检查范围太大了，貌似有点不实际，以及会不会出现包含关系出现循环的问题，
-比如FUNC1 CALL FUNC2, A作为B传参，FUNC2 CALL FUNC1, 但是作为另一个参数传入。。。
-好复杂想不明白。不过好像理论上可行，因为相当于当前类型需要包含所有这个类型的对象可能出现的所有位置的CALL）</p>
-<p><em>（这不就是规定所有接口只有一个方法吗？？！）</em></p>
-<p>事实上，类的等价性也不止一种。
-一种是目前流行的语言（java, c …）普遍采用的<strong>名等价</strong>机制，
-即按照类型继承关系来判断某对象是否属于某个类型；
-还有另一种机制被称作<strong>结构等价</strong>。
-传说那九霄云外，有个无形却至能的玄妙精魄名为Haskell，常有九龙伴舞其周。
-据残籍记载，其使用的就是结构等价。
-结构等价为<strong>字段类型相等</strong>（当然，判定依据也是结构等价）。</p>
-<p>（后面反思了一下，两种机制的问题不只是灵活与安全的问题，可能还有语义上的区别，但是今天没时间接着想力）
-显然，结构等价机制更加灵活，给程序员更多自由。但是，古尔丹，代价是什么呢？</p>
-<p>以我有限的编程经验来看，安全与限制往往同时出现。因而，灵活与安全二者难以两全。
-上面的新关系和结构等价有些相似，貌似会导致这样的问题：可能两个类型的某方法的签名相同，
-但实际上含义（实现的功能）并不相同，或者一个类型A根本就不能看作另一个类型B，那么这种关系下，
-A被当作B使用在编译器看来还是合法的。</p>
-<p>不知道有没有一种解决方案，能够结合两个的优点呢？</p>
-<p>啊，还是C with void* 最万能啊，不能快速写出高效安全可维护可拓展可移植的程序是程序员自己的能力问题。</p>
-<h6 id="激情过后"><a href="#激情过后" class="headerlink" title="激情过后"></a>激情过后</h6><p>另外，基于签名等价的方法等价机制是否也存在问题？
-也许有两个接口分属两个不同的库，
-如果他们碰巧有一个方法签名相同的方法，而方法的含义是不同的，那么是否在表达能力上收到了限制？</p>
-<p>所以，也许名等价机制也该将基类纳入考量？没学过C++，不知道名空间有没有比较优雅的解决方案。</p>
-<p>更可怕的是如果他们碰巧有一个方法签名相同且<strong>返回类型不同</strong>的方法，
-这是否意味着不可能有一个类同时实现这两个接口？</p>
-<p><em>（相关话题：接口最小原则）</em></p>
+                <p>入学仿佛就在昨天，没想到这么快就成为大四老狗了。许多想在大学里完成的事情有不少都没有完成。那就做一个TODO List督促自己吧！</p>
+<span id="more"></span>
+
 
                 
               </div>
@@ -343,7 +300,7 @@ A被当作B使用在编译器看来还是合法的。</p>
     
       <span class="category-chain">
         
-  <a href="/categories/Programming-Language/" class="category-chain-item">Programming Language</a>
+  <a href="/categories/Daily/" class="category-chain-item">Daily</a>
   
   
 
@@ -355,6 +312,13 @@ A被当作B使用在编译器看来还是合法的。</p>
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Daily/">#Daily</a>
+      
+    </div>
+  
 </div>
 
 
@@ -363,8 +327,8 @@ A被当作B使用在编译器看来还是合法的。</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>接口类型与签名，谁更本质？</div>
-      <div>http://example.com/2022/10/02/Interface-and-signature/</div>
+      <div>Mission Impossible</div>
+      <div>http://example.com/2023/09/08/Senior-Planning/</div>
     </div>
     <div class="license-meta">
       
@@ -376,7 +340,7 @@ A被当作B使用在编译器看来还是合法的。</p>
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月2日</div>
+          <div>2023年9月8日</div>
         </div>
       
       
@@ -406,18 +370,12 @@ A被当作B使用在编译器看来还是合法的。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/10/02/Content-timeline/" title="一个比较妥当的文本增量更新的按时间组织方式">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">一个比较妥当的文本增量更新的按时间组织方式</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/02/tips-in-hexo-blog-setup/" title="hexo博客设置注意事项">
-                        <span class="hidden-mobile">hexo博客设置注意事项</span>
+                      <a href="/2023/09/07/Haskell-Learning/" title="2023: A Haskell Odyssey">
+                        <span class="hidden-mobile">2023: A Haskell Odyssey</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

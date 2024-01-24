@@ -16,15 +16,15 @@
   <meta name="author" content="Bluesbreaker45">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Enable I&#x2F;O APIC if you stock at the scene of the OS installing interface. Below are some solutions I found to deal with a VirtualBox error.Sadly, none of them works for me. But I just want to record t">
+    <meta name="description" content="Enable I&#x2F;O APIC if you stock at the scene of the OS installing interface. Below are some solutions I found to deal with a VirtualBox error. Sadly, none of them works for me. But I just want to re">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Notes on setting up a VM using VirtualBox">
 <meta property="og:url" content="http://example.com/2022/10/15/VM-setup/index.html">
 <meta property="og:site_name" content="Bluesbreaker45&#39;s LiveHouse">
-<meta property="og:description" content="Enable I&#x2F;O APIC if you stock at the scene of the OS installing interface. Below are some solutions I found to deal with a VirtualBox error.Sadly, none of them works for me. But I just want to record t">
+<meta property="og:description" content="Enable I&#x2F;O APIC if you stock at the scene of the OS installing interface. Below are some solutions I found to deal with a VirtualBox error. Sadly, none of them works for me. But I just want to re">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-07T02:37:55.898Z">
+<meta property="article:modified_time" content="2023-09-22T09:31:36.441Z">
 <meta property="article:author" content="Bluesbreaker45">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -83,7 +83,11 @@
 
 
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
 
 
 <body>
@@ -274,8 +278,9 @@
             
               <div class="markdown-body">
                 
-                <p>Enable I/O APIC if you stock at the scene of the OS installing interface.</p>
-<p>Below are some solutions I found to deal with a VirtualBox error.<br>Sadly, none of them works for me. But I just want to record them.</p>
+                <p>Enable I&#x2F;O APIC if you stock at the scene of the OS installing interface.</p>
+<p>Below are some solutions I found to deal with a VirtualBox error.
+Sadly, none of them works for me. But I just want to record them.</p>
 <pre><code class="hljs">If you got such error while starting a VM using VirtualBox:
 <figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">Error </span>relaunching VirtualBox VM process: 5<br>where: supR3HardenedWinReSpawn what: 5 VERR_INVALID_NAME (<span class="hljs-string">-104</span>) - Invalid (malformed) file/path name.<br></code></pre></td></tr></table></figure>
 
@@ -283,12 +288,17 @@ If you use previous version of VirtualBox, you may refer to
 [one of my favorite user-authority interaction](https://forums.virtualbox.org/viewtopic.php?f=6&amp;t=82277) (it seems that in v7 Oracle removed VBoxDRV from where it
 was in previous version(like referred in this post) and integrated it into other
 parts, so the post may not help. But love those community members who found the problem and devote their time digging into it to provide solutions).
-</code></pre><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=N4C5CeYfntE&amp;ab_channel=BrainersTechnology">Virtual box shared folder</a></p>
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=N4C5CeYfntE&ab_channel=BrainersTechnology">Virtual box shared folder</a></p>
 <p><a target="_blank" rel="noopener" href="http://t.zoukankan.com/veraland-p-13490217.html">Set magic</a>. Note that you can apply magic just on firefox rather than system-wide.</p>
 <p><a target="_blank" rel="noopener" href="https://blog.devgenius.io/hard-link-and-a-symbolic-link-any-difference-ef8b9bd61734">Symbolic link vs hard link</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.baeldung.com/linux/too-many-levels-of-symlinks">Too-many-levels-of-symlinks</a></p>
-<p>If you stock at bochs GUI with blank screen and seeing the output similar to the following in the terminal:<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs terminal">(0) [0x0000fffffff0] f000:fff0 (unk. ctxt): jmpf 0xf000:e05b          ; ea5be000f0<br>&lt;bochs:1&gt; <br></code></pre></td></tr></table></figure><br>type ‘c’ and ENTER into the terminal, then the program would continue to run.</p>
-<p>If using HuaweiCloud ECS VM and you want to transmit local files to the VM, the recommended approach is to use ssh tools like <strong>scp</strong>.<br>But if it was impossible to use them, <a target="_blank" rel="noopener" href="https://support.huaweicloud.com/bestpractice-obs/obs_05_0430.html">here is another one way</a><br>(and if the VM HAS a public network access, directly go to section 7 “使用obsutil”). Related links: <a target="_blank" rel="noopener" href="https://support.huaweicloud.com/utiltg-obs/obs_11_0005.html">Config initialization</a>.</p>
+<p>If you stock at bochs GUI with blank screen and seeing the output similar to the following in the terminal:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs terminal">(0) [0x0000fffffff0] f000:fff0 (unk. ctxt): jmpf 0xf000:e05b          ; ea5be000f0<br>&lt;bochs:1&gt; <br></code></pre></td></tr></table></figure>
+<p>type ‘c’ and ENTER into the terminal, then the program would continue to run.</p>
+<p>If using HuaweiCloud ECS VM and you want to transmit local files to the VM, the recommended approach is to use ssh tools like <strong>scp</strong>.
+But if it was impossible to use them, <a target="_blank" rel="noopener" href="https://support.huaweicloud.com/bestpractice-obs/obs_05_0430.html">here is another one way</a>
+(and if the VM HAS a public network access, directly go to section 7 “使用obsutil”). Related links: <a target="_blank" rel="noopener" href="https://support.huaweicloud.com/utiltg-obs/obs_11_0005.html">Config initialization</a>.</p>
 
                 
               </div>
@@ -296,6 +306,27 @@ parts, so the post may not help. But love those community members who found the 
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Techy-Sundry/" class="category-chain-item">Techy Sundry</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
 </div>

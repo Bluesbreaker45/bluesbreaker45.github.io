@@ -16,15 +16,15 @@
   <meta name="author" content="Bluesbreaker45">
   <meta name="keywords" content="">
   
-    <meta name="description" content="以下以may analysis为例，must analysis基本同理，区别主要在于是$\sqsupseteq$还是$\sqsubseteq$。 注意以下谈到的所有$F$，首先要满足是safe的，包括transfer function设计合理并且每一轮中每个node都需要（至少）被visit过一次。注意这一点的意义在于你可以说我有一个$F$，transfer function或者每轮遍历内容为空，">
+    <meta name="description" content="以下以may analysis为例，must analysis基本同理，区别主要在于是$\sqsupseteq$还是$\sqsubseteq$。 注意以下谈到的所有$F$，首先要满足是safe的，包括transfer function设计合理并且每一轮中每个node都需要（至少）被visit过一次。 注意这一点的意义在于你可以说我有一个$F$，transfer function或者每轮遍历内容为空">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Dataflow Analysis中不同节点遍历顺序的Iterative Solver结果相等的证明">
 <meta property="og:url" content="http://example.com/2022/11/15/Iterative-Solver-proof/index.html">
 <meta property="og:site_name" content="Bluesbreaker45&#39;s LiveHouse">
-<meta property="og:description" content="以下以may analysis为例，must analysis基本同理，区别主要在于是$\sqsupseteq$还是$\sqsubseteq$。 注意以下谈到的所有$F$，首先要满足是safe的，包括transfer function设计合理并且每一轮中每个node都需要（至少）被visit过一次。注意这一点的意义在于你可以说我有一个$F$，transfer function或者每轮遍历内容为空，">
+<meta property="og:description" content="以下以may analysis为例，must analysis基本同理，区别主要在于是$\sqsupseteq$还是$\sqsubseteq$。 注意以下谈到的所有$F$，首先要满足是safe的，包括transfer function设计合理并且每一轮中每个node都需要（至少）被visit过一次。 注意这一点的意义在于你可以说我有一个$F$，transfer function或者每轮遍历内容为空">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-11-14T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-07T02:39:05.058Z">
+<meta property="article:modified_time" content="2023-09-22T09:34:19.351Z">
 <meta property="article:author" content="Bluesbreaker45">
 <meta property="article:tag" content="Static-Analysis">
 <meta name="twitter:card" content="summary_large_image">
@@ -84,7 +84,11 @@
 
 
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
 
 
 <body>
@@ -221,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          2.3k 字
         
       </span>
     
@@ -232,7 +236,7 @@
         
         
         
-          18 分钟
+          19 分钟
         
       </span>
     
@@ -276,33 +280,38 @@
               <div class="markdown-body">
                 
                 <p><em>以下以may analysis为例，must analysis基本同理，区别主要在于是$\sqsupseteq$还是$\sqsubseteq$。</em></p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>以下谈到的所有$F$，首先要满足是safe的，包括transfer function设计合理并且每一轮中每个node都需要（至少）被visit过一次。<br>注意这一点的意义在于你可以说我有一个$F$，transfer function或者每轮遍历内容为空，那么bottom就是它的最小不动点，但这显然不是我们想要的。</p>
-<h2 id="记号"><a href="#记号" class="headerlink" title="记号"></a>记号</h2><p>代表整个程序状态的完全格$L$，完全格的信息不仅有所有OUT, 还有所有IN；每一轮对$L$的映射记为$F: L \rightarrow L$。<br>分别代表两个不同轮内遍历顺序的$F_1$, $F_2$。</p>
-<p>对于visit到一个node时发生的事情，有以下步骤：merge所有前驱的out到in，然后OUT = transfer(IN)。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>以下谈到的所有$F$，首先要满足是safe的，包括transfer function设计合理并且每一轮中每个node都需要（至少）被visit过一次。
+注意这一点的意义在于你可以说我有一个$F$，transfer function或者每轮遍历内容为空，那么bottom就是它的最小不动点，但这显然不是我们想要的。</p>
+<h2 id="记号"><a href="#记号" class="headerlink" title="记号"></a>记号</h2><p>代表整个程序状态的完全格$L$，完全格的信息不仅有所有OUT, 还有所有IN；每一轮对$L$的映射记为$F: L \rightarrow L$。
+分别代表两个不同轮内遍历顺序的$F_1$, $F_2$。</p>
+<p>对于visit到一个node时发生的事情，有以下步骤：merge所有前驱的out到in，然后OUT &#x3D; transfer(IN)。</p>
 <p>由于merge函数具有可交换性，所以visit到一个node时merge的顺序对于遍历完一个node之后的结果无影响。（也可以认为遍历一个node是一个原子操作）</p>
 <p>所以任意取一个每一次merge动作和transfer动作也可以看成是一个原子操作$f: L \rightarrow L$。</p>
 <p>所以一个有k个前驱的node $i$被visit的动作的形式化写法可以写成下面形式（记visit前的程序状态格为$L_o$, visit之后为$L_r$）:</p>
-<p>$L<em>r = f</em>{transfer<em>i} \circ f</em>{merge<em>{i,k}} \circ … \circ f</em>{merge<em>{i,1}} (L_o)$，复合函数记为$L_r = f</em>{node_i} (L_o)$</p>
-<p>其中的$f<em>{transfer_i}$代表transfer，$f</em>{merge_{i,j}}$代表前驱j的OUT merge到当前node的IN中。</p>
+<p>$L_r &#x3D; f_{transfer_i} \circ f_{merge_{i,k}} \circ … \circ f_{merge_{i,1}} (L_o)$，复合函数记为$L_r &#x3D; f_{node_i} (L_o)$</p>
+<p>其中的$f_{transfer_i}$代表transfer，$f_{merge_{i,j}}$代表前驱j的OUT merge到当前node的IN中。</p>
 <p>记号部分整理完毕，现在开始正式的证明。</p>
 <h2 id="Iterative-Solver最小不动点相等的证明"><a href="#Iterative-Solver最小不动点相等的证明" class="headerlink" title="Iterative Solver最小不动点相等的证明"></a>Iterative Solver最小不动点相等的证明</h2><p>在iterative solver中，一轮迭代分解为对node以某个顺序遍历，所以对于一个有n个node的CFG的第$i$轮遍历，可以写成</p>
-<p>$L<em>{i} = f</em>{node<em>n} \circ … \circ f</em>{node<em>1} (L</em>{i-1})$，$F$即为复合函数$f<em>{node_n} \circ … \circ f</em>{node<em>1}$, $L</em>{i} = F(L_{i-1})$</p>
-<p>整理一下，$F = f<em>{node_n} \circ … \circ f</em>{node<em>1}$<br>$= (f</em>{transfer<em>n} \circ f</em>{merge<em>{n,k}} \circ … \circ f</em>{merge<em>{n,1}}) \circ … \circ (f</em>{transfer<em>1} \circ f</em>{merge<em>{1,k}} \circ … \circ f</em>{merge<em>{1,1}})$<br>$= f</em>{transfer<em>n} \circ f</em>{merge<em>{n,k}} \circ … \circ f</em>{merge<em>{n,1}} \circ … \circ f</em>{transfer<em>1} \circ f</em>{merge<em>{1,k}} \circ … \circ f</em>{merge_{1,1}}$</p>
+<p>$L_{i} &#x3D; f_{node_n} \circ … \circ f_{node_1} (L_{i-1})$，$F$即为复合函数$f_{node_n} \circ … \circ f_{node_1}$, $L_{i} &#x3D; F(L_{i-1})$</p>
+<p>整理一下，$F &#x3D; f_{node_n} \circ … \circ f_{node_1}$ 
+$&#x3D; (f_{transfer_n} \circ f_{merge_{n,k}} \circ … \circ f_{merge_{n,1}}) \circ … \circ (f_{transfer_1} \circ f_{merge_{1,k}} \circ … \circ f_{merge_{1,1}})$
+$&#x3D; f_{transfer_n} \circ f_{merge_{n,k}} \circ … \circ f_{merge_{n,1}} \circ … \circ f_{transfer_1} \circ f_{merge_{1,k}} \circ … \circ f_{merge_{1,1}}$</p>
 <p>首先，上面出现的每一个映射，无论是$F$还是某个原子函数$f$，都是在$L$上的单调函数。</p>
-<p>对于$F<em>1$的任一不动点$p_1$，有$p_1 = F_1(p_1) = f</em>{transfer<em>n} \circ f</em>{merge<em>{n,k}} \circ … \circ f</em>{merge<em>{n,1}} \circ … \circ f</em>{transfer<em>1} \circ f</em>{merge<em>{1,k}} \circ … \circ f</em>{merge_{1,1}}(p_1)$，</p>
+<p>对于$F_1$的任一不动点$p_1$，有$p_1 &#x3D; F_1(p_1) &#x3D; f_{transfer_n} \circ f_{merge_{n,k}} \circ … \circ f_{merge_{n,1}} \circ … \circ f_{transfer_1} \circ f_{merge_{1,k}} \circ … \circ f_{merge_{1,1}}(p_1)$，</p>
 <p>根据原子函数的单调性可得，$p_1$ apply每一个原子函数$f$的结果都是$p_1$。</p>
 <p>对于另一个顺序遍历的函数$F_2$，他也是由$F_1$中的原子函数$f$以不同顺序构成，即</p>
-<p>$F_2 = f_s \circ … \circ f_1$，</p>
+<p>$F_2 &#x3D; f_s \circ … \circ f_1$，</p>
 <p>原子函数存在一个一一映射:</p>
-<p>${f<em>1, …, f_s} \rightarrow \cup</em>{i \in {1, …, n}} ({f<em>{transfer_i}} \cup {f</em>{merge<em>{i, k}}, …, f</em>{merge_{i, 1}}})$</p>
+<p>${f_1, …, f_s} \rightarrow \cup_{i \in {1, …, n}} ({f_{transfer_i}} \cup {f_{merge_{i, k}}, …, f_{merge_{i, 1}}})$</p>
 <p>下面的记法与上面等价：</p>
-<p>${f<em>1, …, f_s} \rightarrow \cup</em>{i \in {1, …, n}} ({f<em>{transfer_i}} \cup (\cup</em>{k \in 节点i的前驱节点的标号集合} {f<em>{merge</em>{i, k}}}))$</p>
-<p>所以$p_1 = F_2(p_1)$，$p_1$是$F_2$的不动点。</p>
+<p>${f_1, …, f_s} \rightarrow \cup_{i \in {1, …, n}} ({f_{transfer_i}} \cup (\cup_{k \in 节点i的前驱节点的标号集合} {f_{merge_{i, k}}}))$</p>
+<p>所以$p_1 &#x3D; F_2(p_1)$，$p_1$是$F_2$的不动点。</p>
 <p>同理，$F_2$的任意一个不动点$p_2$是$F_1$的不动点。</p>
 <p>所以两个$F$的不动点集合相等，二者有同一个最小不动点。</p>
 <p>Q.E.D.</p>
 <h2 id="WorkList-Solver与Iterative-Solver最小不动点相等的证明"><a href="#WorkList-Solver与Iterative-Solver最小不动点相等的证明" class="headerlink" title="WorkList Solver与Iterative Solver最小不动点相等的证明"></a>WorkList Solver与Iterative Solver最小不动点相等的证明</h2><p>TODO.</p>
-<p>暂时还没时间细想，但是可能是可以证明对于一个类似Iterative Solver，但每一轮中遍历顺序不同的Solver，只要是到达不动点，那么这个不动点就是所有Iterative Solver的不动点。<br>然后证明WorkList Solver由于相当于去掉了上述Solver的遍历序列中对$L$没有影响的$f_{node_i}$而得到的遍历序列，从而最后结果也是最小不动点。</p>
+<p>暂时还没时间细想，但是可能是可以证明对于一个类似Iterative Solver，但每一轮中遍历顺序不同的Solver，只要是到达不动点，那么这个不动点就是所有Iterative Solver的不动点。
+然后证明WorkList Solver由于相当于去掉了上述Solver的遍历序列中对$L$没有影响的$f_{node_i}$而得到的遍历序列，从而最后结果也是最小不动点。</p>
 <!--
 首先明确一点，设计出来的Iterative Solver是基线，也就是说有了设计合理的transfer function，Iterative Solver的结果是safe的。
 WorkList没有不动点之说，因为WorkList没有轮次的概念。要问的是WorkList是否会停留在Iterative Solver的最小不动点上。
@@ -313,6 +322,8 @@ WorkList没有不动点之说，因为WorkList没有轮次的概念。要问的�
 
 2.workList停机的不动点是最小不动点。
 -->
+
+
 <h2 id="对WorkList算法的可能优化"><a href="#对WorkList算法的可能优化" class="headerlink" title="对WorkList算法的可能优化"></a>对WorkList算法的可能优化</h2><p>TODO.</p>
 
                 
@@ -321,6 +332,27 @@ WorkList没有不动点之说，因为WorkList没有轮次的概念。要问的�
             <hr/>
             <div>
               <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Programming-Language/" class="category-chain-item">Programming Language</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
   
   
     <div class="post-meta">

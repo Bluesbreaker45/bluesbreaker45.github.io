@@ -16,12 +16,12 @@
   <meta name="author" content="Bluesbreaker45">
   <meta name="keywords" content="">
   
-    <meta name="description" content="“Don’t try to understand it. Feel it.” — Tenet">
+    <meta name="description" content="“Don’t try to understand it. Feel it.” – Tenet">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Haskell 学习笔记">
+<meta property="og:title" content="2023: A Haskell Odyssey">
 <meta property="og:url" content="http://example.com/2023/09/07/Haskell-Learning/index.html">
 <meta property="og:site_name" content="Bluesbreaker45&#39;s LiveHouse">
-<meta property="og:description" content="“Don’t try to understand it. Feel it.” — Tenet">
+<meta property="og:description" content="“Don’t try to understand it. Feel it.” – Tenet">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-06T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-09-06T16:00:00.000Z">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Haskell 学习笔记 - Bluesbreaker45&#39;s LiveHouse</title>
+  <title>2023: A Haskell Odyssey - Bluesbreaker45&#39;s LiveHouse</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -84,7 +84,11 @@
 
 
   
-<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
 
 
 <body>
@@ -198,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Haskell 学习笔记"></span>
+            <span id="subtitle" data-typed-text="2023: A Haskell Odyssey"></span>
           
         </div>
 
@@ -221,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          38 字
+          1.7k 字
         
       </span>
     
@@ -232,7 +236,7 @@
         
         
         
-          1 分钟
+          15 分钟
         
       </span>
     
@@ -270,12 +274,44 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Haskell 学习笔记</h1>
+            <h1 style="display: none">2023: A Haskell Odyssey</h1>
             
             
               <div class="markdown-body">
                 
-                <p><em>“Don’t try to understand it. Feel it.” </em><br><em>— Tenet</em></p>
+                <p><em>“Don’t try to understand it. Feel it.”</em>
+<em>– Tenet</em></p>
+<span id="more"></span>
+
+<h2 id="Start-Learn-You-a-Haskell-for-Great-Good"><a href="#Start-Learn-You-a-Haskell-for-Great-Good" class="headerlink" title="Start: Learn You a Haskell for Great Good!"></a>Start: Learn You a Haskell for Great Good!</h2><p>Haskell的语法是优雅的。</p>
+<p>诸如“允许符号字符串作为name”、“可以用中缀形式定义并应用函数”、“内置的<code>$</code>, <code>.</code>运算符”等设计，为程序员写出更易读的代码风格创造可能。
+这使得Haskell克服了同为函数式的Lisp括号满天飞的问题（<a target="_blank" rel="noopener" href="https://www.reddit.com/r/ProgrammerHumor/comments/7sk1rx/a_spy_manages_to_steal_the_last_50mb_of_the_lisp/">这里</a>有一个笑话。当然我也知道这是Lisp的Parser实现简单的原因），
+也克服了C系语法对较为死板的apply方式。</p>
+<p>因为有学过Scheme，平时在写Python和Java的时候也经常使用一些函数式的写法（Stream也是函数式（振声）），所以用函数式思维写程序并没有什么障碍。
+但是Haskell的库不太熟，所以还是经常做出手搓复杂轮子的事情。还是有待精进啊！</p>
+<p>Haskell让我耳目一新的，</p>
+<p>一，是与我比较熟悉的Java截然不同的类型系统，这也是我接下来学习的对象之一；</p>
+<p>二，也是学习Haskell时最“臭名昭著”的难点，是以<code>Monad</code>为代表的类，也就是带computing environment&#x2F;context的类。
+似乎这也被认为是函数式编程的进阶内容（这不是我说的，参考<a target="_blank" rel="noopener" href="https://pl.cs.pku.edu.cn/info/1017/1839.htm">该课程安排</a>）。
+这与我印象中其他语言的进阶内容不相符：难道不应该是一些和语法相关的写法吗？（虽然对库的使用也是很重要的）</p>
+<p>顺着上面所说，也有人称Haskell为<a target="_blank" rel="noopener" href="https://pl.cs.pku.edu.cn/info/1017/1839.htm">“Value-Oriented Programming”</a>，也许是因为Haskell强大的表达能力并非源于某些语法，而是由数据结构来进行复杂表达？感觉有点Meta Programming的味道了。然后我就突然想起来之前看过的一个<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27355585/answer/36418834">知乎回答</a>提到<code>Monad</code>和Aspect-Oriented Programming的关系。</p>
+<p>自由的表达能力加上出神入化的数据结构以实现一些神奇的功能，或许这就是Haskell哲学吧！</p>
+<p>上面瞎扯了这么多不通顺的东西，看起来挺没意思的。接下来就顺着<em>Learn you a Haskell</em>的章节顺序来做一点小小的我觉得有意思的地方吧！</p>
+<h3 id="Introduction-Installation"><a href="#Introduction-Installation" class="headerlink" title="Introduction (Installation)"></a>Introduction (Installation)</h3><p>一些比较入门的东西，我觉得比较抽象的一点在安装<code>GHCup</code>自带的包管理器<code>Cabal</code>上。
+不知道是不是得益于国内的网络质量，<code>wsl2</code>用官网的安装脚本安装的时候会卡在<code>Cabal</code>的一步复制某个default configuration上。
+我目前的workaround是：</p>
+<ol>
+<li>在这一步<code>Ctrl-c</code>掉；</li>
+<li>然后手动运行<code>cabal user-config update</code>去产生一个默认config；</li>
+<li>选择你喜欢的<code>hackage</code>源，加入<code>~/.cabal/config</code>里，替换掉原来的官方仓库（你最喜欢的源一定是<a target="_blank" rel="noopener" href="https://mirror.nju.edu.cn/mirrorz-help/hackage/?mirror=NJU">NJU Mirror</a>，对吧？）。</li>
+</ol>
+<p>（我在写这一节，查看NJU Mirror对应手册的时候才发现手册说得已经很清楚了。向当时断断续续安装几个晚上而不得的我致以崇高敬意）。
+这样的话似乎也能正常使用，我后来用<code>Cabal</code>在本地安装了<a target="_blank" rel="noopener" href="https://wiki.haskell.org/Hoogle"><code>hoogle</code>，一个很酷的API查询插件</a>。</p>
+<p>另外就是在安装的时候建议安装<code>hls</code>(Haskell Language Server)，这样的话用<code>VSCode</code>时才能使用自动补全和语法检查建议等功能。配置VScode的<code>ghcup</code>路径的时候注意和别的工具不太一样，不是到bin文件夹，而是直接配置到<code>ghcup</code>，比如<code>~/.ghcup/bin/ghcup</code>。</p>
+<h3 id="Starting-Out"><a href="#Starting-Out" class="headerlink" title="Starting-Out"></a>Starting-Out</h3><p>我想你注意到了<code>ghci</code>，并且很容易把它理解成类似Python Intepreter一样的东西。
+但是此二者有着一定差别：在学习，你可以完全基于Python Intepreter进行所有实验与测试，但<code>ghci</code>做不到这一点，部分语法无法可读地在<code>ghci</code>内表达，此外在语义上也有部分区别。
+学到<code>IO</code>和<code>Monad</code>相关章节以后你可能会有更深刻的体会。</p>
+<p>因此，我建议你仿照作者在<code>Introduction</code>一节最后描述，在<code>Baby&#39;s first functions</code>一节开头再次演示的工作流，即在某个Haskell源文件里编写代码，然后在<code>ghci</code>内用<code>:l</code>命令将代码load进ghci内的方式，进行测试。</p>
 
                 
               </div>
@@ -294,7 +330,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Programming/" class="category-chain-item">Programming</a>
+  <a href="/categories/Programming-Language/" class="category-chain-item">Programming Language</a>
   
   
 
@@ -321,7 +357,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Haskell 学习笔记</div>
+      <div>2023: A Haskell Odyssey</div>
       <div>http://example.com/2023/09/07/Haskell-Learning/</div>
     </div>
     <div class="license-meta">
@@ -363,6 +399,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/09/08/Senior-Planning/" title="Mission Impossible">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mission Impossible</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
